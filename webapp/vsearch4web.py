@@ -32,6 +32,7 @@ def do_search() -> 'html':
 
     @copy_current_request_context
     def log_request(req: 'flask_request', res: str) -> None:  # Теперь с базой данных
+        # TODO: вынести эту функцию из внешней с сохранением копирования req и res
         try:
             with UseDatabase(app.config['dbconfig']) as cursor:
                 _SQL = """insert into log
@@ -102,3 +103,5 @@ def view_the_log() -> 'html':  # Теперь данные извлекаютс�
 
 if __name__ == '__main__':
     app.run(debug=True)
+# TODO: сделать развертывание приложения
+# TODO: сделать контейнеризацию приложения в докер и выложить на хаб
